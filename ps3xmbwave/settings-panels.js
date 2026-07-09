@@ -92,7 +92,8 @@
       const meta = metaMap[key] || {};
       const isSelect = meta.type === 'select';
       const isNumber = typeof value === 'number' && Number.isFinite(value);
-      if (!isSelect && !isNumber) return;
+      const isBoolean = meta.type === 'bool';
+      if (!isSelect && !isNumber && !isBoolean) return;
 
       const row = document.createElement('div');
       row.className = 'settings-row';
@@ -138,6 +139,32 @@
         });
 
         controls.appendChild(select);
+      } 
+      else if (isBoolean) {
+        const boolMeta = settings[key] || false;
+
+        const controlRow = document.createElement('div');
+        controlRow.className = 'control-row';
+
+        const label = document.createElement('label');
+        label.style.display = 'flex';
+        label.style.alignItems = 'center';
+        label.style.cursor = 'pointer';
+        
+        label.innerText = key; 
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.checked = boolMeta;
+        checkbox.style.marginRight = '8px';
+
+        checkbox.addEventListener('change', function(e) {
+          settings[key] = e.target.checked;
+        });
+
+        label.prepend(checkbox);
+        controlRow.appendChild(label);
+        controls.appendChild(controlRow);
       } else {
         const numMeta = metaMap[key] || inferMeta(value);
         const decimals = Number.isFinite(numMeta.decimals) ? numMeta.decimals : decimalsFromStep(numMeta.step);

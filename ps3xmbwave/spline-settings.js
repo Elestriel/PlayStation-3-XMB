@@ -5,11 +5,11 @@
 window.SPLINE_SETTINGS = {
   gradientPreset: 'default',
 
-  colorR: 37,
+  colorR: 174,
   colorG: 89,
   colorB: 179,
 
-  gradientTopMul: 0.09,
+  gradientTopMul: 0.14,
   gradientBotMul: 0.62,
 
   flowSpeed: 0.18,

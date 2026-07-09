@@ -17,6 +17,8 @@
   <script src="spline-reverse.js"></script>
   <script src="spline.js"></script>
   <script src="particles.js"></script>
+  <script src="performance-settings.js"></script>
+  <script src="performance.js"></script>
   <script>
     (function () {
       const canvas = document.getElementById('wave-canvas');
@@ -64,6 +66,15 @@
         showPosition: { top: '12px', left: '12px' },
       });
 
+      window.createSettingsPanel({
+        id: 'performance-panel',
+        title: 'Performance Controls',
+        settings: window.PERFORMANCE_SETTINGS,
+        meta: window.PERFORMANCE_SETTINGS_META,
+        position: { top: '12px', left: '342px' },
+        showPosition: { top: '12px', left: '342px' }
+      });
+
       const splineLayer = window.createSplineLayer(gl, canvas);
       const particlesLayer = window.createParticlesLayer(gl, canvas);
 
@@ -86,5 +97,35 @@
       requestAnimationFrame(frame);
     })();
   </script>
+  <!--
+  <script>
+    // Function to handle the actual toggling logic
+    function toggleUILayer() {
+      const uiLayer = document.getElementById('ui-layer-root');
+      if (uiLayer) {
+        if (uiLayer.style.display === 'none') {
+          uiLayer.style.display = ''; // Restores original layout behavior
+        } else {
+          uiLayer.style.display = 'none';
+        }
+      }
+    }
+
+    // 1. Catch pressing 'H' anywhere on the page
+    window.addEventListener('keydown', function(event) {
+      if (event.key.toLowerCase() === 'h' && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+        toggleUILayer();
+      }
+    });
+
+    // 2. Catch a double-click anywhere on the page
+    window.addEventListener('dblclick', function(event) {
+      // Optional: Avoid triggering if clicking on an interactive input element
+      if (!['INPUT', 'TEXTAREA', 'BUTTON', 'A'].includes(event.target.tagName)) {
+        toggleUILayer();
+      }
+    });
+  </script>
+  -->
 </body>
 </html>
