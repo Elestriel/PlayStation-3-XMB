@@ -1,7 +1,7 @@
 'use strict';
 
 window.PERFORMANCE_SETTINGS = {
-    targetFPS: 60,
+    targetFPS: 30,
     showFPS: false,
     autoBatteryFPS: true,
     batteryFPS: 15
