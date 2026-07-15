@@ -10,7 +10,9 @@
   }
 
   function humanizeKey(key) {
-    return key.replace(/([A-Z])/g, ' $1').replace(/^./, function (c) { return c.toUpperCase(); });
+    return key.replace(/([A-Z])/g, ' $1')
+      .replace(/F P S/g, 'FPS')
+      .replace(/^./, function (c) { return c.toUpperCase(); });
   }
 
   function inferMeta(value) {
